@@ -19,7 +19,7 @@
         <PasswordBox
           MinWidth="100"
           IsEnabled="True"
-          materialDesign:HintAssist.Hint=""
+          materialDesign:HintAssist.Hint="Contraseña"
           Password="" Margin="196,206,196,0" Height="38" VerticalAlignment="Top" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Row="1"
          />
         <Image HorizontalAlignment="Left" Height="422" Margin="139,0,0,0" VerticalAlignment="Center" Width="434" Source="/GoldenGym.jpg" RenderTransformOrigin="0.693,0.501"/>
