@@ -1,0 +1,188 @@
+﻿<Window x:Class="GoldenGym.Usuarios"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GoldenGym"
+        mc:Ignorable="d"
+        Title="Usuarios" Height="768" Width="1366" Cursor="">
+    <Grid Background="#DD000000">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="1029"/>
+            <ColumnDefinition Width="280*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="1" ItemsSource="{Binding}" x:Name="dgUsuarios" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="dgUsuarios_Loaded" SelectionChanged="dgUsuarios_SelectionChanged" Grid.ColumnSpan="2" Margin="0,40,317,0">
+            <DataGrid.Columns>
+                <!--Aqui definimos los atributos de la base de datos, de como se deben de llamar-->
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Numero" Binding="{Binding Numero}"/>
+                <DataGridTextColumn Header="Nombre        " Binding="{Binding Nombre}"/>
+                <DataGridTextColumn Header="Apellidos                  " Binding="{Binding Apellidos}"/>
+                <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}"/>
+                <DataGridTextColumn Header="Fecha inicio" Binding="{Binding Fecha_inicio}"/>
+                <DataGridTextColumn Header="Fecha fin" Binding="{Binding Fecha_fin}"/>
+                <DataGridTextColumn Header="Promo" Binding="{Binding Promo}"/>
+                <DataGridTextColumn Header="Importe" Binding="{Binding Importe, StringFormat=C}"/>
+                <DataGridTextColumn Header="Adeudo" Binding="{Binding Adeudo, StringFormat=C}"/>
+                <!--Aqui definiremos los datos dinamicos-->
+                <DataGridTextColumn Header="Dias faltantes" Binding="{Binding DiasFaltantes}"/>
+
+
+                <DataGridTemplateColumn Header="Estatus">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Estatus}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <!-- Activo: verde -->
+                                            <DataTrigger Binding="{Binding Estatus}" Value="Activo">
+                                                <Setter Property="Background" Value="#FF0ADD0D" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </DataTrigger>
+                                            <!-- Por vencer: amarillo -->
+                                            <DataTrigger Binding="{Binding Estatus}" Value="Por vencer">
+                                                <Setter Property="Background" Value="#FFF2D64B" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                            </DataTrigger>
+                                            <!-- Vencido: rojo -->
+                                            <DataTrigger Binding="{Binding Estatus}" Value="Vencido">
+                                                <Setter Property="Background" Value="#FFE5382A" />
+                                                <Setter Property="Foreground" Value="White" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTextColumn Header="Foto" Binding="{Binding Foto}"/>
+                <DataGridTextColumn Header="Notas" Binding="{Binding Notas}"/>
+                <DataGridTextColumn Header="Huella" Binding="{Binding Huella}" Visibility="Hidden"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox
+          VerticalAlignment="Top"
+          materialDesign:HintAssist.Hint="Nombre" x:Name="tbNombre"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="73,23,75,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Apellidos" x:Name="tbApellidos"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="75,76,72,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Numero de telefono" x:Name="tbNumero"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="25,183,178,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Dirección" x:Name="tbDireccion"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="73,127,73,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+             VerticalAlignment="Top"
+             materialDesign:HintAssist.Hint="Notas" x:Name="tbNotas"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="13,288,9,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Promoción(Si/No)" x:Name="tbPromo"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="25,233,178,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            materialDesign:TextFieldAssist.PrefixText="$"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Importe" x:Name="tbImporte"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="184,183,19,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            materialDesign:TextFieldAssist.PrefixText="$"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Adeudo" x:Name="tbAdeudo"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="184,233,19,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <Image Grid.Column="2" x:Name="imgFoto" HorizontalAlignment="Left" Height="113" Margin="83,434,0,0" VerticalAlignment="Top" Width="140" Stretch="Uniform"/>
+        <Border BorderBrush="#FF403001" BorderThickness="1" Grid.Column="2" Height="112" Margin="88,434,87,0" VerticalAlignment="Top" Width="140"/>
+        <Button
+          x:Name="btnFoto"
+          Content="Editar foto"
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+          Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+          ToolTip="Editar foto" Grid.Column="2" Margin="84,582,82,0" Height="32" VerticalAlignment="Top" Click="btnFoto_Click"
+        />
+        <Button
+            x:Name="btnCaptura"
+            Content="Capturar huella"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Editar foto" Grid.Column="2" Margin="85,396,81,0" Height="32" VerticalAlignment="Top" Click="btnCaptura_Click"
+        />
+        <DatePicker
+          x:Name="dateInicio"
+          materialDesign:HintAssist.HelperText="Fecha de inicio"
+          materialDesign:HintAssist.Hint=""
+          Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="10,326,169,0" Grid.Column="2" BorderBrush="#FFFFEB3B" Foreground="#FFF2BA52" Height="50" VerticalAlignment="Top"
+        />
+        <DatePicker
+            x:Name="dateFin"
+            materialDesign:HintAssist.HelperText="Fecha de termino"
+            materialDesign:HintAssist.Hint=""
+            Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="160,326,19,0" Grid.Column="2" BorderBrush="#FFFFEB3B" Foreground="#FFF2BA52" Height="50" VerticalAlignment="Top"
+        />
+        <Button
+            x:Name="btnGuardar"
+            Content="Guardar"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Guardar" Grid.Column="2" Margin="25,627,179,0" Height="32" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnGuardar_Click"
+        />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="" x:Name="tbUrlFoto"
+            IsReadOnly="True"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="83,550,83,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Height="27"
+        />
+        <Image Grid.Column="2" x:Name="imgVerHuella" Stretch="Uniform" Visibility="Hidden" HorizontalAlignment="Left" Height="32" Margin="242,418,0,0" VerticalAlignment="Top" Width="33" Source="/huellaFull.png"/>
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Buscar" x:Name="tbBuscar"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="1" Margin="30,0,729,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" TextChanged="tbBuscar_TextChanged"
+        />
+        <Button
+            x:Name="btnLimpiar"
+            Content="Limpiar"
+            IsEnabled="False"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Limpiar" Grid.Column="2" Margin="172,627,31,0" Height="32" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnLimpiar_Click" Cursor="Hand"
+        />
+        <Button
+            x:Name="btnEditar"
+            Content="Guardar edición"
+            IsEnabled="True"
+            Visibility="Collapsed"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Editar" Grid.Column="2" Margin="12,623,170,0" Height="40" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnEditar_Click" Cursor="Hand"
+        />
+        <Button
+            x:Name="btnEliminar"
+            Visibility="Collapsed"
+            Content="{materialDesign:PackIcon Delete}"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            ToolTip="Eliminar" Grid.Column="2" Margin="240,514,0,0" BorderBrush="#FFFFEB3B" Background="#FFFF3B3B" Click="btnEliminar_Click" Cursor="Hand" Height="32" VerticalAlignment="Top"
+        />
+        <Button
+            x:Name="btnInvitados"
+            Content="Agregar invitados"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Editar invitados" Grid.Column="1" Margin="845,3,35,0" Height="32" VerticalAlignment="Top" Click="btnInvitados_Click"
+        />
+    </Grid>
+</Window>
