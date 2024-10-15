@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.IO;
+using GoldenGym.Modelos;
+using GoldenGym.Servicios;
+using System.Security.Cryptography.X509Certificates;
+
 namespace GoldenGym
 {
     /// <summary>
@@ -31,7 +36,30 @@ namespace GoldenGym
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                Logins logins = new Logins();
+                logins.Usuario = tbUser.Text;
+                logins.Contrasena = tbContra.Password;
 
+                bool res = DatoLogin.VerificarUsuario(logins);
+                if (res)
+                {
+                    MessageBox.Show("Inicio de sesión exitoso", "Éxito");
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    this.Close();
+                }
+                else 
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Algo salio mal al iniciar sesion: " + ex.Message, "Error al iniciar");
+
+            }
         }
     }
 }

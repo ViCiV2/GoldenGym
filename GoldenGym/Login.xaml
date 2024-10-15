@@ -1,4 +1,5 @@
 ﻿<Window x:Class="GoldenGym.Login"
+        WindowStartupLocation="CenterScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,12 +14,14 @@
             <RowDefinition Height="22*"/>
         </Grid.RowDefinitions>
         <TextBox
+            VerticalAlignment="Top"
             materialDesign:HintAssist.Hint="Usuario" x:Name="tbUser"
-            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="196,149,196,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" TextChanged="tbApellidos_TextChanged" Grid.Row="1" Height="33" VerticalAlignment="Top"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="196,149,196,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"  Grid.Row="1" Height="33" 
         />
         <PasswordBox
           MinWidth="100"
           IsEnabled="True"
+          x:Name="tbContra"
           materialDesign:HintAssist.Hint="Contraseña"
           Password="" Margin="196,206,196,0" Height="38" VerticalAlignment="Top" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Row="1"
          />
@@ -26,7 +29,7 @@
         <Image Height="100" Margin="300,10,300,0" Grid.Row="1" VerticalAlignment="Top" Source="/bloqueado.png"/>
         <Button
           x:Name="btnLogin"
-          Content="Login"
+          Content="Entrar"
           IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
           Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
           ToolTip="Login" Margin="226,276,226,0" Height="32" VerticalAlignment="Top" Click="btnLogin_Click" Grid.Row="1"

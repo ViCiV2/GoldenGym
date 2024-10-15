@@ -43,5 +43,10 @@ namespace GoldenGym
             Check check = new Check();
             check.Show();
         }
+
+        private void btnAdmin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

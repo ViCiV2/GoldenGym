@@ -119,6 +119,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,12 +144,18 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Invitado.cs" />
+    <Compile Include="Modelos\Logins.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Servicios\DatoInvitados.cs" />
+    <Compile Include="Servicios\DatoLogin.cs" />
     <Compile Include="Servicios\DatoUsuario.cs" />
     <Compile Include="Usuarios.xaml.cs">
       <DependentUpon>Usuarios.xaml</DependentUpon>
     </Compile>
+    <Page Include="Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Check.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

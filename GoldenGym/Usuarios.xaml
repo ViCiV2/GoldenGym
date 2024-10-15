@@ -1,4 +1,5 @@
 ﻿<Window x:Class="GoldenGym.Usuarios"
+        WindowStartupLocation="CenterScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -108,8 +109,8 @@
             materialDesign:HintAssist.Hint="Adeudo" x:Name="tbAdeudo"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="2" Margin="184,233,19,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
         />
-        <Image Grid.Column="2" x:Name="imgFoto" HorizontalAlignment="Left" Height="113" Margin="83,434,0,0" VerticalAlignment="Top" Width="140" Stretch="Uniform"/>
-        <Border BorderBrush="#FF403001" BorderThickness="1" Grid.Column="2" Height="112" Margin="88,434,87,0" VerticalAlignment="Top" Width="140"/>
+        <Image Grid.Column="2" x:Name="imgFoto" HorizontalAlignment="Left" Height="102" Margin="94,441,0,0" VerticalAlignment="Top" Width="124" Stretch="Uniform"/>
+        <Border BorderBrush="#FF403001" BorderThickness="1" Grid.Column="2" Height="116" Margin="85,434,87,0" VerticalAlignment="Top"/>
         <Button
           x:Name="btnFoto"
           Content="Editar foto"
@@ -175,7 +176,7 @@
             Visibility="Collapsed"
             Content="{materialDesign:PackIcon Delete}"
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-            ToolTip="Eliminar" Grid.Column="2" Margin="240,514,0,0" BorderBrush="#FFFFEB3B" Background="#FFFF3B3B" Click="btnEliminar_Click" Cursor="Hand" Height="32" VerticalAlignment="Top"
+            ToolTip="Eliminar" Grid.Column="2" Margin="106,672,105,0" BorderBrush="#FFFFEB3B" Background="#FFFF3B3B" Click="btnEliminar_Click" Cursor="Hand" Height="32" VerticalAlignment="Top"
         />
         <Button
             x:Name="btnInvitados"
