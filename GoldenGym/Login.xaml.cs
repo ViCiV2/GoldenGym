@@ -46,8 +46,8 @@ namespace GoldenGym
                 if (res)
                 {
                     MessageBox.Show("Inicio de sesión exitoso", "Éxito");
-                    MainWindow main = new MainWindow();
-                    main.Show();
+                    Usuarios usuarios = new Usuarios();
+                    usuarios.Show();
                     this.Close();
                 }
                 else 

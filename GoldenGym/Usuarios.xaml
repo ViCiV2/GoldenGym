@@ -185,5 +185,12 @@
             Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
             ToolTip="Editar invitados" Grid.Column="1" Margin="845,3,35,0" Height="32" VerticalAlignment="Top" Click="btnInvitados_Click"
         />
+        <Button
+            x:Name="btnCheckeados"
+            Content="Ver cheks"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Ver cheks" Grid.Column="1" Margin="661,3,219,0" Height="32" VerticalAlignment="Top" Click="btnChekeados_Click"
+        />
     </Grid>
 </Window>

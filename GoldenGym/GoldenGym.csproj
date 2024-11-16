@@ -17,7 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\viciv\OneDrive\Escritorio\GoldenGym7\</PublishUrl>
+    <PublishUrl>C:\Users\viciv\OneDrive\Escritorio\GoldenGym12\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -27,7 +27,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,6 +131,9 @@
     <Compile Include="Check.xaml.cs">
       <DependentUpon>Check.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Checkeados.xaml.cs">
+      <DependentUpon>Checkeados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EnrollmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,9 +146,11 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Checking.cs" />
     <Compile Include="Modelos\Invitado.cs" />
     <Compile Include="Modelos\Logins.cs" />
     <Compile Include="Modelos\Usuario.cs" />
+    <Compile Include="Servicios\DatoChecking.cs" />
     <Compile Include="Servicios\DatoInvitados.cs" />
     <Compile Include="Servicios\DatoLogin.cs" />
     <Compile Include="Servicios\DatoUsuario.cs" />
@@ -157,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Check.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Checkeados.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

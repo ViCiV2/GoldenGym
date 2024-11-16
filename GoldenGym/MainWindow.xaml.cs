@@ -34,8 +34,9 @@ namespace GoldenGym
 
         private void btnUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            Usuarios usuarios = new Usuarios();
-            usuarios.Show();
+            Login login = new Login();
+            login.Show();
+            
         }
 
         private void btnChecador_Click(object sender, RoutedEventArgs e)

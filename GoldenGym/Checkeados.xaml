@@ -1,0 +1,20 @@
+﻿<Window x:Class="GoldenGym.Checkeados"
+        WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GoldenGym"
+        mc:Ignorable="d"
+        Title="Checkeados" Height="450" Width="800" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">
+    <Grid>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding}" x:Name="dgChekeados" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="dgChekeados_Loaded" SelectedCellsChanged="dgChekeados_SelectedCellsChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
+                <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

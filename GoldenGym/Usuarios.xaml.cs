@@ -548,5 +548,11 @@ namespace GoldenGym
             Invitados invitados = new Invitados();
             invitados.Show();
         }
+
+        private void btnChekeados_Click(object sender, RoutedEventArgs e)
+        {
+            Checkeados checkeados = new Checkeados();
+            checkeados.Show();
+        }
     }
 }

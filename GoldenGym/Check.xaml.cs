@@ -19,6 +19,8 @@ using System.Collections.Concurrent;
 using GoldenGym.Modelos;
 using GoldenGym.Servicios;
 using System.Windows.Threading;
+using static DPFP.Verification.Verification;
+using System.Runtime.InteropServices.ComTypes;
 
 
 
@@ -36,9 +38,11 @@ namespace GoldenGym
         public Check()
         {
             InitializeComponent();
+            
+            
         }
 
-        
+
         protected virtual void Init()
         {
             try
@@ -88,7 +92,14 @@ namespace GoldenGym
                             this.Dispatcher.Invoke(new Function(delegate ()
                             {
                                 ColapsaImagen();
+                                int id_usuario;
+                                string nombre;
+                                id_usuario = usuario.Id;
+                                nombre = usuario.Nombre;
+                                //Checkear(id_usuario,nombre);
+                                CheckGuardar(id_usuario, nombre);
                                 Desplegar(usuario);
+                                
                                 StartTimer();
                             }));
                             break;
@@ -105,6 +116,7 @@ namespace GoldenGym
                 }
             }
         }
+
 
         protected void Start()
         {
@@ -168,6 +180,7 @@ namespace GoldenGym
             lblNumero.Content = usuario.Numero;
             lblEstatus.Content = usuario.Estatus;
             lblDias.Content = usuario.DiasFaltantes;
+            lblAdeudo.Content = usuario.Adeudo;
 
             if (usuario.Foto != "" && usuario.Foto != null)
             {
@@ -184,6 +197,77 @@ namespace GoldenGym
 
             imgPerfil.Source = foto;
         }
+        public void CheckGuardar(int id_usuario, string nombre)
+        {
+            DateTime date = DateTime.Now;
+            try 
+            { 
+                Checking checking = new Checking();
+                checking.Id_usuario = id_usuario;
+                checking.Fecha = date;
+                bool res = DatoChecking.VerificarCheck(checking);
+                if (res)
+                {
+                    //MessageBox.Show("Ya existe el usuario checkeado", "Éxito");
+                    ;
+                    
+                }
+                else
+                {
+
+                    //MessageBox.Show("No existe y se checkea", "Éxito");
+                    Checkear(id_usuario, nombre);
+                }
+
+
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Algo sucedio: " + ex.Message, "Error en verificar");
+            }
+
+        }
+        public void Checkear(int id_usuario, string nombre)
+        {
+            try
+            {
+                //Usuario usuario = new Usuario();
+                
+                /*Ejecutamos la consulta de la base de datos*/
+
+                //int id = DatoUsuario.AltaUsuario(usuario)\;
+                int id = DatoChecking.AltaCheck(id_usuario, nombre);
+                if (id > 0)
+                {
+                    ;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible guardar el usuario: " + ex.Message, "Error en Guardar");
+
+            }
+        }
+        public void Checkear2(int id_usuario, string nombre)
+        {
+            try
+            {
+                //Usuario usuario = new Usuario();
+                /*Ejecutamos la consulta de la base de datos*/
+
+                //int id = DatoUsuario.AltaUsuario(usuario)\;
+                int id = DatoChecking.AltaCheck(id_usuario, nombre);
+                if (id > 0)
+                {
+                    MessageBox.Show("Registro exitoso", "Guardar");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible guardar el usuario: " + ex.Message, "Error en Guardar");
+
+            }
+        }
         public void DesplegarNoRegistrado()
         {
             imgPerfil.Visibility = Visibility.Visible;
@@ -195,6 +279,7 @@ namespace GoldenGym
             lblNumero.Content = "Formar parte";
             lblEstatus.Content = "        De";
             lblDias.Content = "Golden Gym";
+            lblAdeudo.Content = "";
 
 
             url = "C:/GoldenGym/sin-registro.jpg";
@@ -236,6 +321,7 @@ namespace GoldenGym
             lblNumero.Content = "";
             lblEstatus.Content = "";
             lblDias.Content = "";
+            lblAdeudo.Content = "";
 
 
             
@@ -304,9 +390,10 @@ namespace GoldenGym
             else
                 lblReport.Content = "The quality of the fingerprint sample is poor.";*/
         }
+
         #endregion
 
-
+        
     }
 
 }

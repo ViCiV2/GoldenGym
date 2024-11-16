@@ -10,24 +10,26 @@
         Title="Check" Height="768" Width="1366" Closed="Window_Closed" Loaded="Window_Loaded">
     <Grid Background="{DynamicResource MaterialDesignShadowBrush}">
 
-        <Image x:Name="imgPerfil" HorizontalAlignment="Left" Height="310" Margin="956,75,0,0" VerticalAlignment="Top" Width="276" Stretch="Uniform" Visibility="Visible"/>
-        <Image x:Name="imgEspera" HorizontalAlignment="Left" Height="412" Margin="915,0,0,0" VerticalAlignment="Center" Width="364" Stretch="Uniform" Source="/Registra.jpeg" Visibility="Visible"/>
+        <Image x:Name="imgPerfil" Height="310" Margin="958,19,132,0" VerticalAlignment="Top" Stretch="Uniform" Visibility="Visible"/>
+        <Image x:Name="imgEspera" Height="412" Margin="915,170,87,0" VerticalAlignment="Top" Stretch="Uniform" Source="/Registra.jpeg" Visibility="Visible"/>
         <Label Content="" x:Name="lblNombre" HorizontalAlignment="Left" Margin="918,338,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
 
         <Label Content="" x:Name="lblApellidos" HorizontalAlignment="Left" Margin="918,405,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
-        <Label Content="" x:Name="lblNumero" HorizontalAlignment="Left" Margin="918,466,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
-        <Label Content="" x:Name="lblEstatus" HorizontalAlignment="Left" Margin="918,532,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
-        <Label Content="" x:Name="lblDias" HorizontalAlignment="Left" Margin="918,598,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
+        <Label Content="" x:Name="lblNumero" HorizontalAlignment="Left" Margin="918,454,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40" RenderTransformOrigin="0.444,0.189"/>
+        <Label Content="" x:Name="lblEstatus" HorizontalAlignment="Left" Margin="918,502,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
+        <Label Content="" x:Name="lblDias" HorizontalAlignment="Left" Margin="918,550,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
+        <Label Content="" x:Name="lblAdeudo" HorizontalAlignment="Left" Margin="918,599,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="40"/>
 
 
         <Label Content="" x:Name="lblStatus" HorizontalAlignment="Left" Margin="1184,739,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="20" Width="320"/>
         <Label Content="" x:Name="lblReport" HorizontalAlignment="Left" Margin="821,739,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="20" Width="320"/>
-        <Image HorizontalAlignment="Left" Height="974" Margin="10,-50,0,0" VerticalAlignment="Top" Width="806" Source="/GoldenGym.jpg"/>
-        <Label Content="BIENVENIDO A"  HorizontalAlignment="Left" Margin="113,24,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="80" FontFamily="DejaVu Serif"/>
-        <Image HorizontalAlignment="Left" Height="106" Margin="43,584,0,0" VerticalAlignment="Top" Width="111" Source="/what.jpeg"/>
-        <Image HorizontalAlignment="Left" Height="138" Margin="599,568,0,0" VerticalAlignment="Top" Width="145" Source="/Insta.jpeg"/>
-        <Label Content="953 115 8410"  HorizontalAlignment="Left" Margin="35,690,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="20"/>
-        <Label Content="@GOLDEN__.GYM._"  HorizontalAlignment="Left" Margin="589,690,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="20" Width="181" Height="42"/>
+        <Image HorizontalAlignment="Left" Height="974" Margin="10,-74,0,0" VerticalAlignment="Top" Width="806" Source="/GoldenGym.jpg"/>
+        <Label Content="BIENVENIDO A" Margin="44,19,583,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="90" FontFamily="DejaVu Serif"/>
+        <Image HorizontalAlignment="Left" Height="143" Margin="34,533,0,0" VerticalAlignment="Top" Width="138" Source="/what.jpeg"/>
+        <Image HorizontalAlignment="Left" Height="164" Margin="626,517,0,0" VerticalAlignment="Top" Width="176" Source="/Insta.jpeg"/>
+        <Label Content="953 115 8410"  HorizontalAlignment="Left" Margin="10,672,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="30"/>
+        <Label Content="@GOLDEN__.GYM._"  HorizontalAlignment="Left" Margin="599,675,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="25" Width="219" Height="42"/>
+        
 
 
 
