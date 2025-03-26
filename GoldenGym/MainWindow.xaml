@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:GoldenGym"
         mc:Ignorable="d"
         Title="GoldenGym: Tablero" Height="768" Width="1366" Icon="/GoldenGym.jpg" Background="#FF403001">
-    <Grid>
+    <Grid Cursor="">
         <Grid.Background>
             <ImageBrush Stretch="UniformToFill" ImageSource="/GoldenGym.jpg"/>
         </Grid.Background>
@@ -28,7 +28,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Updated image source with file extension -->
-                <Image Source="/user7.png" Stretch="UniformToFill" Margin="48,10,48,25" />
+                <Image Source="/gym.png" Stretch="UniformToFill" Margin="48,10,48,25" />
 
                 <Button x:Name="btnUsuarios" Grid.Row="0"
                         Margin="0,120,16,0"
@@ -39,9 +39,9 @@
                 </Button>
 
                 <StackPanel Grid.Row="1" Margin="8,24,8,0">
-                    <TextBlock FontWeight="Bold">Agregar y editar miembro</TextBlock>
+                    <TextBlock FontWeight="Bold">Administración</TextBlock>
                     <TextBlock VerticalAlignment="Center"
-                               Text="En esta pantalla es posible agregar un nuevo usuario y editar uno existente"
+                               Text="Se gestiona todo lo relacionado al gimnasio"
                                TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
@@ -80,7 +80,7 @@
                 <SolidColorBrush Color="{DynamicResource Primary50Foreground}"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label Grid.Column="1" Content="Tablero de administración" HorizontalAlignment="Center" Height="54" Margin="0,18,0,0" VerticalAlignment="Top" Width="501" Foreground="#FFD9C55F" FontSize="40" Grid.ColumnSpan="2" FontFamily="Century"/>
+        <Label Grid.Column="1" Content="Pantalla de inicio" HorizontalAlignment="Center" Height="54" Margin="0,18,0,0" VerticalAlignment="Top" Width="336" Foreground="#FFD9C55F" FontSize="40" Grid.ColumnSpan="2" FontFamily="Century"/>
         <Button
             IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
             Style="{StaticResource MaterialDesignFloatingActionSecondaryLightButton}"
@@ -93,5 +93,13 @@
                 Kind="Account"
             />
         </Button>
+        <Button
+            x:Name="btnPrueba"
+            Content="Prueba"
+            Visibility="Collapsed"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Guardar" Grid.Column="1" Margin="309,614,30,0" Height="32" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnPrueba_Click"
+        />
     </Grid>
 </Window>

@@ -1,0 +1,105 @@
+﻿<Window x:Class="GoldenGym.Productos"
+        WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GoldenGym"
+        mc:Ignorable="d"
+        Title="Productos" Height="768" Width="1366">
+    <Grid Background="{DynamicResource MaterialDesignShadowBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1025*"/>
+            <ColumnDefinition Width="341*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding}" x:Name="dgProductos" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}"  Margin="3,100,3,0" Loaded="dgProductos_Loaded" SelectionChanged="dgProductos_SelectionChanged" LoadingRow="dgProductos_LoadingRow">
+            <DataGrid.Columns>
+                <!-- Columna dinámica para la numeración -->
+                <DataGridTemplateColumn Header="#">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreProducto}"/>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"/>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
+                <DataGridTextColumn Header="Precio de compra" Binding="{Binding PrecioCompra, StringFormat=C}"/>
+                <DataGridTextColumn Header="Precio de venta" Binding="{Binding PrecioVenta, StringFormat=C}"/>
+                <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox
+           VerticalAlignment="Top"
+           materialDesign:HintAssist.Hint="Nombre del producto" x:Name="tbNombreProducto"
+           Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="31,58,31,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Column="1"
+         />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Descripcion" x:Name="tbDescripcion"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="31,135,31,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Column="1"
+         />
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Marca" x:Name="tbMarca"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="31,219,31,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Column="1"
+         />
+        <TextBox
+            materialDesign:TextFieldAssist.PrefixText="$"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Precio de compra" x:Name="tbPrecioCompra"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="1" Margin="31,302,172,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+            materialDesign:TextFieldAssist.PrefixText="$"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Precio de venta" x:Name="tbPrecioVenta"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Grid.Column="1" Margin="174,302,29,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52"
+        />
+        <TextBox
+             VerticalAlignment="Top"
+             materialDesign:HintAssist.Hint="Stock" x:Name="tbStock"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="31,376,31,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" Grid.Column="1"
+        />
+        <TextBox
+             VerticalAlignment="Top"
+             materialDesign:HintAssist.Hint="Buscar" x:Name="tbBuscarProducto"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="14,26,661,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" TextChanged="tbBuscarProducto_TextChanged"
+        />
+        <Button
+            x:Name="btnGuardarProducto"
+            Content="Guardar producto"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="GuardarProducto" Grid.Column="1" Margin="11,551,152,0" Background="#FFD9C55F" Click="btnGuardarProducto_Click" Height="32" VerticalAlignment="Top"
+        />
+
+        <Button
+            x:Name="btnEditarProducto"
+            Content="Guardar cambios"
+            IsEnabled="True"
+            Visibility="Collapsed"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Editar" Grid.Column="1" Margin="12,551,152,0" Height="34" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnEditarProducto_Click" Cursor="Hand"
+        />
+        <Button
+            x:Name="btnEliminarProducto"
+            Visibility="Collapsed"
+            Content="{materialDesign:PackIcon Delete}"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            ToolTip="Eliminar" Grid.Column="1" Margin="105,622,106,0" BorderBrush="#FFFFEB3B" Background="#FFFF3B3B" Click="btnEliminarProducto_Click" Cursor="Hand" Height="32" VerticalAlignment="Top"
+        />
+        <Button
+            x:Name="btnLimpiar"
+            Content="Limpiar"
+            IsEnabled="False"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Limpiar" Grid.Column="1" Margin="194,551,9,0" Height="32" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnLimpiar_Click" Cursor="Hand"
+        />
+
+
+    </Grid>
+</Window>

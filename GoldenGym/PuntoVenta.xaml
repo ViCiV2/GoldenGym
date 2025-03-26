@@ -1,0 +1,70 @@
+﻿<Window x:Class="GoldenGym.PuntoVenta"
+        WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GoldenGym"
+        mc:Ignorable="d"
+        Title="PuntoVenta" Height="768" Width="1366" Background="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="34*"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding}" x:Name="dgProductosVenta" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}"  Margin="0,64,617,0" Loaded="dgProductosVenta_Loaded" LoadingRow="dgProductosVenta_LoadingRow" SelectionChanged="dgProductosVenta_SelectionChanged" >
+            <DataGrid.Columns>
+                <!-- Columna dinámica para la numeración -->
+                <DataGridTemplateColumn Header="#">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreProducto}"/>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"/>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
+                <DataGridTextColumn Header="Precio de compra" Binding="{Binding PrecioCompra, StringFormat=C}"/>
+                <DataGridTextColumn Header="Precio de venta" Binding="{Binding PrecioVenta, StringFormat=C}"/>
+                <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid ItemsSource="{Binding}" x:Name="dgListaVenta" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}"  Margin="0,36,10,138" Grid.Row="1" LoadingRow="dgListaVenta_LoadingRow">
+            <DataGrid.Columns>
+                <!-- Columna dinámica para la numeración -->
+                <DataGridTemplateColumn Header="#">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=Header}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Nombre" Binding="{Binding NombreProducto}"/>
+                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"/>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
+                <DataGridTextColumn Header="Precio de compra" Binding="{Binding PrecioCompra, StringFormat=C}"/>
+                <DataGridTextColumn Header="Precio de venta" Binding="{Binding PrecioVenta, StringFormat=C}"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Stock}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Buscar" x:Name="tbBuscarProducto"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="14,26,1002,0" BorderBrush="#FFF2BA52" Foreground="#FFF2BA52" TextChanged="tbBuscarProducto_TextChanged"
+        />
+        <Label Content="Total: $0" x:Name="lblTotal" HorizontalAlignment="Left" Margin="683,442,0,0" VerticalAlignment="Top" Foreground="#FFF2D64B" FontSize="50" Height="72" Grid.Row="1" FontFamily="Rockwell Extra Bold"/>
+        <Button
+            x:Name="btnCobrar"
+            Content="Cobrar"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+            Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+            ToolTip="Guardar" Margin="356,442,740,0" Height="72" VerticalAlignment="Top" Background="#FFD9C55F" Click="btnCobrar_Click" Grid.Row="1" FontSize="40" FontFamily="Arial Black"
+        />
+
+
+
+
+    </Grid>
+</Window>

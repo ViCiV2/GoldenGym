@@ -1,0 +1,115 @@
+﻿<Window x:Class="GoldenGym.Tablero"
+        WindowStartupLocation="CenterScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GoldenGym"
+        mc:Ignorable="d"
+        Title="Tablero" Height="768" Width="1366" Background="{DynamicResource MaterialDesign.Brush.Primary.Light.Foreground}">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/GoldenGym.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="101" Stroke="#FF454545" VerticalAlignment="Top" Width="1540" Margin="0,-5,0,0" OpacityMask="#FF454545">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{DynamicResource Primary50Foreground}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Grid.Column="1" Content="Administración" HorizontalAlignment="Center" Height="54" Margin="0,18,0,0" VerticalAlignment="Top" Width="336" Foreground="#FFD9C55F" FontSize="40" Grid.ColumnSpan="2" FontFamily="Century"/>
+        <materialDesign:Card Grid.Column="1" Height="245" Margin="10,188,245,0" 
+                      VerticalAlignment="Top" Background="#FF454545">
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Updated image source with file extension -->
+                <Image Source="/user7.png" Stretch="UniformToFill" Margin="48,10,48,25" />
+
+                <Button x:Name="btnUsuariosTab" Grid.Row="0"
+                 Margin="0,120,16,0"
+                 HorizontalAlignment="Right"
+                 VerticalAlignment="Top"
+                 Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="#FFF2D64B" Cursor="Hand" BorderBrush="#FFF2BA52" Grid.RowSpan="2" Click="btnUsuariosTab_Click">
+                    <materialDesign:PackIcon Kind="AccountEditOutline" />
+                </Button>
+
+                <StackPanel Grid.Row="1" Margin="8,24,8,0">
+                    <TextBlock FontWeight="Bold">Agregar y editar usuarios</TextBlock>
+                    <TextBlock VerticalAlignment="Center"
+                        Text="En esta pantalla es posible agregar un nuevo usuario y editar uno existente"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="1" Height="245" Margin="353,188,353,0" 
+              VerticalAlignment="Top" Background="#FF454545" Grid.ColumnSpan="2">
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Updated image source with file extension -->
+                <Image Source="/productos.png" Stretch="UniformToFill" Margin="48,10,48,25" />
+
+                <Button x:Name="btnProductos" Grid.Row="0"
+                     Margin="0,120,16,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="#FFF2D64B" Cursor="Hand" BorderBrush="#FFF2BA52" Grid.RowSpan="2" Click="btnProductos_Click">
+                    <materialDesign:PackIcon Kind="AccountEditOutline" />
+                </Button>
+
+                <StackPanel Grid.Row="1" Margin="8,24,8,0">
+                    <TextBlock FontWeight="Bold">Agregar productos</TextBlock>
+                    <TextBlock VerticalAlignment="Center"
+                Text="En esta pantalla es posible agregar un nuevo producto"
+                TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+        <materialDesign:Card Grid.Column="2" Height="245" Margin="245,188,10,0" 
+            VerticalAlignment="Top" Background="#FF454545">
+            <Grid Margin="0,0,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Updated image source with file extension -->
+                <Image Source="/id-card.png" Stretch="UniformToFill" Margin="48,10,48,25" />
+
+                <Button x:Name="btnBitacora" Grid.Row="0"
+                     Margin="0,120,16,0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top"
+                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}" Background="#FFF2D64B" Cursor="Hand" BorderBrush="#FFF2BA52" Grid.RowSpan="2" Click="btnBitacora_Click">
+                    <materialDesign:PackIcon Kind="AccountEditOutline" />
+                </Button>
+
+                <StackPanel Grid.Row="1" Margin="8,24,8,0">
+                    <TextBlock FontWeight="Bold">Consultar historial de checks</TextBlock>
+                    <TextBlock VerticalAlignment="Center"
+                    Text="En esta pantalla es posible consultar las asistencias de los usuarios del gym"
+                    TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</Window>

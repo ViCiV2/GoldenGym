@@ -30,7 +30,11 @@ namespace GoldenGym.Modelos
             {
                 if (Fecha_fin.HasValue)
                 {
-                    return (Fecha_fin.Value - DateTime.Now).Days;
+                    // Calcula la diferencia de tiempo total, incluyendo la fecha y la hora.
+                    TimeSpan diferencia = Fecha_fin.Value - DateTime.Now;
+
+                    // Devuelve la diferencia en días. La propiedad .Days redondea al día completo.
+                    return (int)Math.Ceiling(diferencia.TotalDays);
                 }
                 return 0;
             }

@@ -49,5 +49,11 @@ namespace GoldenGym
         {
 
         }
+
+        private void btnPrueba_Click(object sender, RoutedEventArgs e)
+        {
+            PuntoVenta puntoVenta = new PuntoVenta();
+            puntoVenta.Show();
+        }
     }
 }

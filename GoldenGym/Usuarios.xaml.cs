@@ -143,8 +143,17 @@ namespace GoldenGym
             }
             // Obtener el valor seleccionado
             DateTime fechaSeleccionada = dateInicio.SelectedDate.Value;
-            string fechaFormateada = fechaSeleccionada.ToString("dd/MM/yyyy");
-            //MessageBox.Show($"Fecha seleccionada: {fechaFormateada}", "Información");
+            DateTime horaActual = DateTime.Now;
+            DateTime fechaConHora = new DateTime(
+                fechaSeleccionada.Year,
+                fechaSeleccionada.Month,
+                fechaSeleccionada.Day,
+                horaActual.Hour,   // Hora actual
+                horaActual.Minute, // Minutos actuales
+                horaActual.Second  // Segundos actuales
+            );
+            //string fechaFormateada = fechaSeleccionada.ToString("dd/MM/yyyy");
+            //MessageBox.Show($"Fecha seleccionada: {fechaConHora}", "Información");
             if (dateFin.SelectedDate == null)
             {
                 MessageBox.Show("Debe seleccionar una fecha de fin.", "Error");
@@ -153,8 +162,17 @@ namespace GoldenGym
 
 
             DateTime fechaSeleccionadaFin = dateFin.SelectedDate.Value;
-            string fechaFormateadaFin = fechaSeleccionadaFin.ToString("dd/MM/yyyy");
-            //MessageBox.Show($"Fecha seleccionada: {fechaFormateadaFin}", "Información");
+            DateTime horaActualFin = DateTime.Now;
+            DateTime fechaConHoraFin = new DateTime(
+                fechaSeleccionadaFin.Year,
+                fechaSeleccionadaFin.Month,
+                fechaSeleccionadaFin.Day,
+                horaActualFin.Hour,   // Hora actual
+                horaActualFin.Minute, // Minutos actuales
+                horaActualFin.Second  // Segundos actuales
+            );
+            //string fechaFormateadaFin = fechaSeleccionadaFin.ToString("dd/MM/yyyy");
+            //MessageBox.Show($"Fecha seleccionada: {fechaConHoraFin}", "Información");
 
             if (tbUrlFoto.Text == "")
             {
@@ -178,8 +196,8 @@ namespace GoldenGym
                 usuario.Apellidos = tbApellidos.Text;
                 usuario.Numero = tbNumero.Text;
                 usuario.Direccion = tbDireccion.Text;
-                usuario.Fecha_inicio = fechaSeleccionada;
-                usuario.Fecha_fin = fechaSeleccionadaFin;
+                usuario.Fecha_inicio = fechaConHora;
+                usuario.Fecha_fin = fechaConHoraFin;
                 usuario.Promo = tbPromo.Text;
                 usuario.Importe = float.Parse(tbImporte.Text);
                 usuario.Adeudo = float.Parse(tbAdeudo.Text);
@@ -216,8 +234,10 @@ namespace GoldenGym
                     tbNotas.Text = "";
                     imgVerHuella.Visibility = Visibility.Hidden;
                     Template = null;
-                    dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
-                    
+                    //dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+                    ActualizarTablaYConteos();
+
+
                 }
             }
             catch (Exception ex)
@@ -234,6 +254,47 @@ namespace GoldenGym
         private void dgUsuarios_Loaded(object sender, RoutedEventArgs e)
         {
             dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+
+            // Obtenemos la colección de usuarios
+            var usuarios = DatoUsuario.MuestraUsuarios();
+
+            if (usuarios != null)
+            {
+                // Calculamos los conteos
+                int total = usuarios.Count();
+                int activos = usuarios.Count(u => u.Estatus == "Activo");
+                int porVencer = usuarios.Count(u => u.Estatus == "Por vencer");
+                int vencidos = usuarios.Count(u => u.Estatus == "Vencido");
+
+                // Actualizamos las etiquetas
+                txtUsuariosActivos.Text = $"{activos}";
+                txtUsuariosPorVencer.Text = $"{porVencer}";
+                txtUsuariosVencidos.Text = $"{vencidos}";
+            }
+        }
+
+
+        private void ActualizarTablaYConteos()
+        {
+            // Cargar los datos en la tabla
+            dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+
+            // Obtenemos la colección de usuarios
+            var usuarios = DatoUsuario.MuestraUsuarios();
+
+            if (usuarios != null)
+            {
+                // Calculamos los conteos
+                int total = usuarios.Count();
+                int activos = usuarios.Count(u => u.Estatus == "Activo");
+                int porVencer = usuarios.Count(u => u.Estatus == "Por vencer");
+                int vencidos = usuarios.Count(u => u.Estatus == "Vencido");
+
+                // Actualizamos las etiquetas
+                txtUsuariosActivos.Text = $"{activos}";
+                txtUsuariosPorVencer.Text = $"{porVencer}";
+                txtUsuariosVencidos.Text = $"{vencidos}";
+            }
         }
 
         private void dgUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -435,6 +496,15 @@ namespace GoldenGym
             }
 
             DateTime fechaSeleccionada = dateInicio.SelectedDate.Value;
+            DateTime horaActual = DateTime.Now;
+            DateTime fechaConHora = new DateTime(
+                fechaSeleccionada.Year,
+                fechaSeleccionada.Month,
+                fechaSeleccionada.Day,
+                horaActual.Hour,   // Hora actual
+                horaActual.Minute, // Minutos actuales
+                horaActual.Second  // Segundos actuales
+            );
 
             if (dateFin.SelectedDate == null)
             {
@@ -443,8 +513,16 @@ namespace GoldenGym
             }
 
             DateTime fechaSeleccionadaFin = dateFin.SelectedDate.Value;
+            DateTime horaActualFin = DateTime.Now;
+            DateTime fechaConHoraFin = new DateTime(
+                fechaSeleccionadaFin.Year,
+                fechaSeleccionadaFin.Month,
+                fechaSeleccionadaFin.Day,
+                horaActualFin.Hour,   // Hora actual
+                horaActualFin.Minute, // Minutos actuales
+                horaActualFin.Second  // Segundos actuales
+            );
 
-           
 
             Usuario usuarioHuella = (Usuario)dgUsuarios.SelectedItem;
 
@@ -467,8 +545,8 @@ namespace GoldenGym
                 usuario.Apellidos = tbApellidos.Text;
                 usuario.Numero = tbNumero.Text;
                 usuario.Direccion = tbDireccion.Text;
-                usuario.Fecha_inicio = fechaSeleccionada;
-                usuario.Fecha_fin = fechaSeleccionadaFin;
+                usuario.Fecha_inicio = fechaConHora;
+                usuario.Fecha_fin = fechaConHoraFin;
                 usuario.Promo = tbPromo.Text;
                 usuario.Importe = float.Parse(tbImporte.Text);
                 usuario.Adeudo = float.Parse(tbAdeudo.Text);
@@ -485,7 +563,7 @@ namespace GoldenGym
                 
                 
                 
-                MessageBox.Show(string.Format("Foto URL: {0}", usuario.Foto), "Detalles de Foto");
+                //MessageBox.Show(string.Format("Foto URL: {0}", usuario.Foto), "Detalles de Foto");
                 string respaldo = ".jpg";
                 string new_edit = GenerarNombreAleatorio(10);
                 string generaImagen = new_edit + respaldo;
@@ -526,10 +604,11 @@ namespace GoldenGym
                     imgVerHuella.Visibility = Visibility.Hidden;
                     Template = null;
 
-                   
+
 
                     // Actualizar el DataGrid
-                    dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+                    //dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+                    ActualizarTablaYConteos();
                 }
             }
             catch (Exception ex)
@@ -540,7 +619,58 @@ namespace GoldenGym
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
 
+                if (dgUsuarios.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, selecciona un producto para eliminar.", "Eliminar Producto");
+                    return;
+                }
+                Usuario usuario = (Usuario)dgUsuarios.SelectedItem;
+                MessageBoxResult confirmacion = MessageBox.Show(
+                $"¿Estás seguro de que deseas eliminar el usuario, esta acción no se podrá deshacer  '{usuario.Nombre}'?",
+                "Confirmar Eliminación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+                if (confirmacion == MessageBoxResult.Yes)
+                {
+                    //int result = DatoProductos.EliminarProducto(producto);
+                    int result = DatoUsuario.EliminarUsuario(usuario);
+
+                    if (result > 0)
+                    {
+
+                        MessageBox.Show("Usuario eliminado correctamente.", "Eliminar Usuario");
+                        
+                        // Limpiar los campos después de editar
+                        tbNombre.Text = "";
+                        tbApellidos.Text = "";
+                        tbNumero.Text = "";
+                        tbDireccion.Text = "";
+                        dateInicio.SelectedDate = null;
+                        dateFin.SelectedDate = null;
+                        tbPromo.Text = "";
+                        tbImporte.Text = "";
+                        tbAdeudo.Text = "";
+                        tbUrlFoto.Text = "";
+                        imgFoto.Source = null;
+                        tbNotas.Text = "";
+                        imgVerHuella.Visibility = Visibility.Hidden;
+                        Template = null;
+                        //dgUsuarios.DataContext = DatoUsuario.MuestraUsuarios();
+                        ActualizarTablaYConteos();
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible eliminar el producto: " + ex.Message, "Error en Eliminar");
+            }
         }
 
         private void btnInvitados_Click(object sender, RoutedEventArgs e)
@@ -549,10 +679,11 @@ namespace GoldenGym
             invitados.Show();
         }
 
-        private void btnChekeados_Click(object sender, RoutedEventArgs e)
+        
+
+        private void dgUsuarios_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            Checkeados checkeados = new Checkeados();
-            checkeados.Show();
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

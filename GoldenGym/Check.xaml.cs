@@ -38,7 +38,7 @@ namespace GoldenGym
         public Check()
         {
             InitializeComponent();
-            
+
             
         }
 
@@ -175,12 +175,34 @@ namespace GoldenGym
             imgPerfil.Visibility = Visibility.Visible;
             string url = "";
 
-            lblNombre.Content = usuario.Nombre;
-            lblApellidos.Content = usuario.Apellidos;
-            lblNumero.Content = usuario.Numero;
-            lblEstatus.Content = usuario.Estatus;
-            lblDias.Content = usuario.DiasFaltantes;
-            lblAdeudo.Content = usuario.Adeudo;
+            lblNombre.Content = $"Nombre: {usuario.Nombre}";
+            lblApellidos.Content = $"Apellidos: {usuario.Apellidos}";
+            lblNumero.Content = $"Numero: {usuario.Numero}";
+            lblEstatus.Content = $"Estatus: {usuario.Estatus}";
+            lblDias.Content = $"Días faltantes: {usuario.DiasFaltantes} días";
+            lblAdeudo.Content = $"Adeudo: ${usuario.Adeudo:F2}";
+
+            if (usuario.Estatus == "Activo")
+            {
+                lblEstatus.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF65FF00")); // Verde
+            }
+            else if (usuario.Estatus == "Por vencer")
+            {
+                lblEstatus.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFDFF00")); // Amarillo
+            }
+            else if (usuario.Estatus == "Vencido")
+            {
+                lblEstatus.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFEF1D57")); // Rojo
+            }
+
+            if (usuario.Adeudo > 0)
+            {
+                lblAdeudo.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFEF1D57")); // Color personalizado
+            }
+            else
+            {
+                lblAdeudo.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF2D64B")); // Amarilllo normal
+            }
 
             if (usuario.Foto != "" && usuario.Foto != null)
             {
@@ -296,7 +318,7 @@ namespace GoldenGym
         {
             // Crea un temporizador de 5 segundos
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Interval = TimeSpan.FromSeconds(3);
 
             // Suscribirse al evento Tick que se dispara cuando el tiempo ha pasado
             timer.Tick += (sender, args) =>
@@ -390,6 +412,7 @@ namespace GoldenGym
             else
                 lblReport.Content = "The quality of the fingerprint sample is poor.";*/
         }
+
 
         #endregion
 

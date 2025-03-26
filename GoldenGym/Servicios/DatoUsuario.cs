@@ -165,5 +165,35 @@ namespace GoldenGym.Servicios
             return res;
         }
 
+        public static int EliminarUsuario(Usuario usuario)
+        {
+            int res = 0;
+
+            try
+            {
+                using (var conn = new SqlConnection("Data Source=localhost; initial catalog=Checador; Integrated Security=True"))
+                {
+                    conn.Open();
+                    using (var command = conn.CreateCommand())
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "EliminarUsuario"; // Nombre del procedimiento almacenado.
+
+                        // Usar el Id del producto del objeto.
+                        command.Parameters.AddWithValue("@Id", usuario.Id);
+
+                        // Ejecutar el procedimiento almacenado.
+                        res = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el usuario: " + ex.Message, "Error en Eliminación");
+            }
+
+            return res;
+        }
+
     }
 }
